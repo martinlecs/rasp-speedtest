@@ -1,0 +1,36 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h2>Speed Test Results</h2>
+        <p>Showing speed test results that run every 15 minutes</p>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Download</th>
+                    <th>Upload</th>
+                    <th>Ping</th>
+                    <th>Server</th>
+                    <th>IP</th>
+                    <th>ISP</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for d in data %}
+                <tr>
+                    <td>{{ d[1] }}</td>
+                    <td>{{ d[2] }}</td>
+                    <td>{{ d[3] }}</td>
+                    <td>{{ d[4] }}</td>
+                    <td>{{ d[5] }}</td>
+                    <td>{{ d[6] }}</td>
+                    <td>{{ d[7] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        </table>
+    </div>
+{% endblock %}
