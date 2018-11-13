@@ -1,8 +1,8 @@
+import globals
 import os
 import speedtest
 import sqlite3
 
-DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'store.db')
 
 class SQLiteDBConnection:
 
@@ -28,7 +28,7 @@ class SQLiteDBConnection:
 class SpeedTester:
 
     def __init__(self):
-        self._db_connection = SQLiteDBConnection(DB_PATH)
+        self._db_connection = SQLiteDBConnection(globals.DB_PATH)
         self._st = speedtest.Speedtest()
 
     def run_speed_test(self):
@@ -40,10 +40,6 @@ class SpeedTester:
         data = [results['timestamp'], float(results['download'])/1000000, float(results['upload'])/1000000, results['ping'],
                 results['server']['name'], results['client']['ip'], results['client']['isp']]
         self._db_connection.insert_row(data)
-        print("Finished speed test")
-
-    def get_results(self):
-        return self._db_connection.dump_table()
 
 
 if __name__ == "__main__":
