@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 flask = "*"
+speedtest-cli = "*"
+apscheduler = "*"
 
 [dev-packages]
 
